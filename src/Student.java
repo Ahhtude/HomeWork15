@@ -2,13 +2,18 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Student {
-    private String name;
-    private double age;
-    private int mark;
-    public static List<Student> testList = new ArrayList<>();
-    public static Set setOfStudents;
-    public static Map<String, Student> mapOfStudents;
-    public static List<Student> sorteredList;
+
+        private String name;
+        private double age;
+        private int mark;
+
+        public static List<Student> testList = new ArrayList<>();
+
+        public static Set setOfStudents;
+
+        public static Map<String, Student> mapOfStudents;
+
+        public static List<Student> sorteredList;
 
     public Student(String name, double age, int mark) {
         this.name = name;
@@ -29,22 +34,22 @@ public class Student {
     }
 
     public static void createSetofStudents(List list){
-        setOfStudents = Student.getStudentsList().stream().collect(Collectors.toSet());
-        setOfStudents.stream().forEach(a -> {
-            System.out.println(a.toString());
-        });
+        setOfStudents = Student
+                .getStudentsList()
+                .stream().collect(Collectors.toSet());
+
+        setOfStudents
+                .stream()
+                .forEach(a ->
+            System.out.println(a.toString())
+        );
     }
 
     public static void createMapOfStudents(List<Student> list){
-        /**list.stream().forEach((Object listObj) -> {
-            mapOfStudents.put(((Student)listObj).getName(),((Student)listObj));
-        });
 
-            mapOfStudents.entrySet().stream().forEach(a->{
-                System.out.println(a.toString());
-        });
-        **/
-        mapOfStudents = list.stream().collect(Collectors.toMap(
+        mapOfStudents = list
+                .stream()
+                .collect(Collectors.toMap(
                 a-> a.getName(),
                 b-> b
         ));
@@ -52,32 +57,44 @@ public class Student {
 
     public static void sorteredListByAge(List<Student> list){
 
-        list.forEach(a-> System.out.println(a.getName()));
-        sorteredList
-                = list.stream().sorted(Comparator.comparing(Student::getAge)).collect(Collectors.toList());
+        list
+                .forEach(a-> System.out.println(a.getName()));
 
-        sorteredList.forEach(a-> System.out.println(a.getName()));
+        sorteredList = list
+                .stream()
+                .sorted(Comparator.comparing(Student::getAge))
+                .collect(Collectors.toList());
+
+        sorteredList
+                .forEach(a-> System.out.println(a.getName()));
     }
 
     public static void countStudentsInList(List<Student> list){
-       long i = list.stream().count();
-        System.out.println(i);
+
+        long i = list.stream().count();
+
+       System.out.println(i);
     }
 
     public static void countDistinctStudentsInList(List<Student> list){
+
         long i = list.stream().distinct().count();
+
         System.out.println(i);
 
     }
 
     public static void printMapInStringFormat(Map<String,Student> map){
-        map.entrySet().stream().forEach(entry -> {
-            System.out.println(String.format("Key %s value %s",entry.getKey(),entry.getValue()));
-        });
+
+        map.entrySet()
+                .stream().forEach(entry ->
+            System.out.println(String.format("Key %s value %s",entry.getKey(),entry.getValue()))
+        );
 
     }
 
     public static List<Student> getStudentsList() {
+
         return testList;
     }
 
